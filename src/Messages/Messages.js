@@ -11,9 +11,10 @@ class Messages extends React.Component {
         let messages = null;
         const ws = new WebSocket('ws://st-chat.shas.tel');
         ws.onmessage = (e) => {
-            newMessage = JSON.parse(e.data);
+            const newMessageParse = JSON.parse(e.data);
+            newMessage = newMessageParse.reverse();
             messages = this.state.messages.concat(newMessage);
-            console.log('eData = ', e.data,newMessage, messages);
+            console.log('eData = ', newMessage);
             this.setState({messages : messages})
             console.log('state == ', this.state);
         }    
