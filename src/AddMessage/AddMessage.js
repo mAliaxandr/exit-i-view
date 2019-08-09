@@ -16,6 +16,21 @@ class AddMessage extends React.Component{
         
     }
 
+    sendMessage = () => {
+        let mes = {
+            from: 'Jun',
+            message: this.state.AddMessage,
+        }
+        this.setState({AddMessage : null});
+        console.log('but onclik', this.state);
+        const ws = new WebSocket('ws://st-chat.shas.tel');
+        ws.onopen = () => {
+            ws.send(
+                JSON.stringify(mes)
+            )
+        }
+    }
+
     render() {
         return(
             <div>
@@ -25,7 +40,7 @@ class AddMessage extends React.Component{
                     onChange={this.onChange}
                 />
                 <button
-                    // onClick={}
+                    onClick={this.sendMessage}
                 >SEND</button>
             </div>
         )
