@@ -1,0 +1,24 @@
+li {
+    list-style: none;
+    text-align: left;
+}
+
+.message-header {
+    text-align: center;
+}
+
+.message-name {
+    color: red;
+    font-weight: 700;
+}
+
+.message-time {
+    color: rgb(199, 182, 182);
+    font-weight: 400;
+    padding-left: 15px;
+}
+
+.message-message {
+    color: white;
+    margin: 25px
+}
