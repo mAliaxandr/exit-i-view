@@ -17,6 +17,9 @@ class AddMessage extends React.Component{
     }
 
     sendMessage = () => {
+        if ( !this.state.AddMessage) {
+            return
+        }
         let mes = {
             from: 'Jun',
             message: this.state.AddMessage,

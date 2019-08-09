@@ -1,5 +1,6 @@
 import React from 'react';
 import './Messages.css';
+import { DateTime } from 'luxon';
 
 class Messages extends React.Component {
     state={
@@ -28,17 +29,36 @@ class Messages extends React.Component {
         this.scrollToBottom();
     }
 
-    render() {
+    getName = (e) => {
+        const {getUserName} = this.props;
+        console.log('name ---', e.target.id);
+        getUserName(e.target.id)
+    }
 
+    render() {
+        
 		let messages;
 
 		if(this.state.messages){
-            messages = this.state.messages.map( (item, index) => 
-            <li key={index}>
-                <div className='message-name'>{item.from}<span className='message-time'>{item.time}</span></div> 
+            messages = this.state.messages.map( (item, index) => {
+                const date = DateTime.fromMillis(item.time);
+                const userDate = date.c.hour+':'+date.c.minute+':'+date.c.second+" <"+date.c.day+' : '+date.c.month+' : '+date.c.year+' >';
+                
+                return(
+                    <li key={index}>
+                <div
+                    id={item.from}
+                    className='message-name'
+                    onClick={this.getName}
+                >{item.from}<span className='message-time'> {userDate}</span></div> 
                 <span className='message-message'>{item.message}</span>
                 <hr/>
-            </li>)
+            </li>
+                )
+                
+
+            }
+            )
 		}
 
         return (<ul className="list-group">
