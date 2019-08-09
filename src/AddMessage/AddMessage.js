@@ -11,8 +11,8 @@ class AddMessage extends React.Component{
         console.log('e.value -- ', e.target.value, this.state);    
     };
 
-    componentDidMount(){
-        console.log('didMount -- ', this.state);
+    componentDidUpdate(e){
+        console.log('did up date -- ', this.state);
         
     }
 
@@ -29,6 +29,8 @@ class AddMessage extends React.Component{
                 JSON.stringify(mes)
             )
         }
+        const input = document.querySelector('input');
+        input.value = '';   
     }
 
     render() {
@@ -36,7 +38,8 @@ class AddMessage extends React.Component{
             <div>
                 <input
                     type='text'
-                    placeholder='enter your meesage'
+                    autoFocus
+                    placeholder=' Enter your meesage'
                     onChange={this.onChange}
                 />
                 <button
