@@ -20,6 +20,14 @@ class Messages extends React.Component {
         }    
     }
 
+    scrollToBottom = () => {
+        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    }
+
+    componentDidUpdate(){
+        this.scrollToBottom();
+    }
+
     render() {
 
 		let messages;
@@ -33,11 +41,17 @@ class Messages extends React.Component {
             </li>)
 		}
 
-		return (<ul className="list-group">
+        return (<ul className="list-group">
 					<li className="list-group-item">
 						<h4 className="message-header">Messages</h4>
 					</li>
-					{messages}
+                    {messages}
+                    <li>
+                        <div 
+                            // style={{ float:"left", clear: "both" }}
+                            ref={(el) => { this.messagesEnd = el; }}>
+                        </div>
+                    </li>
 				</ul>)
 	}
 }
