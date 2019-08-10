@@ -3,6 +3,7 @@ import React from 'react';
 class AddMessage extends React.Component{
     state={
         AddMessage : null,
+        login: null,
     }
 
     onChange = (e) => {
@@ -11,17 +12,29 @@ class AddMessage extends React.Component{
         console.log('e.value -- ', e.target.value, this.state);    
     };
 
-    componentDidUpdate(e){
-        console.log('did up date -- ', this.state);
+    componentDidMount(){
+        const {login} = this.props;
+        
+        console.log('add mes login -- ', login);
         
     }
 
+    componentDidUpdate(e){
+        
+        const {login} = this.props;
+        if(!this.state.login && login) {
+            this.setState({login});
+        }
+        
+        console.log(' addMessage did up date -- ', this.state, login);
+    }
+
     sendMessage = () => {
-        if ( !this.state.AddMessage) {
+        if ( !this.state.AddMessage || !this.state.login) {
             return
         }
         let mes = {
-            from: 'Jun',
+            from: this.state.login,
             message: this.state.AddMessage,
         }
         this.setState({AddMessage : null});
@@ -32,7 +45,7 @@ class AddMessage extends React.Component{
                 JSON.stringify(mes)
             )
         }
-        const input = document.querySelector('input');
+        const input = document.querySelector('.addMessage-inputMessage');
         input.value = '';   
     }
 
@@ -40,6 +53,7 @@ class AddMessage extends React.Component{
         return(
             <div>
                 <input
+                    className="addMessage-inputMessage"
                     type='text'
                     autoFocus
                     placeholder=' Enter your meesage'

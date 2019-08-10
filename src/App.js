@@ -2,28 +2,41 @@ import React from 'react';
 import './App.css';
 import Messages from './Messages/Messages';
 import AddMessage from './AddMessage/AddMessage';
+import LogIn from './LogIn/LogIn';
 
 
 class App extends React.Component {
+  state = {
+    login: null,
+  }
 
-  getUserName = (name) => {
-    const input = document.querySelector('input');
-    input.value = name+" : ";
-    console.log('usName --', name );
+  setLogin = (login) => {
+    console.log('app setLogin -- ', login);
     
+    this.setState({login});
+  }
+
+  getName = (name) => {
+    const input = document.querySelector('.addMessage-inputMessage');
+    input.value = name+" : ";
   }
 
   render(){
     return (
       <div className="App">
         <h1>CHAT</h1>
+        <LogIn
+          setLogin={this.setLogin}
+        />
         <div className="messages-wrapper">
           <Messages
-            getUserName={this.getUserName}
+            getName={this.getName}
           />
         </div>
         <div className="addMessage">
-          <AddMessage/>
+          <AddMessage
+            login={this.state.login}
+          />
         </div>
       </div>
     );

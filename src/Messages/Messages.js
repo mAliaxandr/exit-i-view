@@ -29,10 +29,9 @@ class Messages extends React.Component {
         this.scrollToBottom();
     }
 
-    getName = (e) => {
-        const {getUserName} = this.props;
-        console.log('name ---', e.target.id);
-        getUserName(e.target.id)
+    getNameForMessage = (e) => {
+        const {getName} = this.props;
+        getName(e.target.id)
     }
 
     getRealDate = (time) => {
@@ -72,10 +71,11 @@ class Messages extends React.Component {
                     <div
                         id={item.from}
                         className='message-name'
-                        onClick={this.getName}
-                    >{item.from}
-                        <span className='message-time'> {date} </span>
+                        onClick={this.getNameForMessage}
+                    >
+                        {item.from}
                     </div> 
+                    <span className='message-time'> {date} </span>
                     <span className='message-message'>{item.message}</span>
                     <hr/>
                 </li>
