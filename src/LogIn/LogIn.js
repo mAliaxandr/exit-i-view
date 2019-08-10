@@ -6,14 +6,31 @@ class LogIn extends React.Component {
         login : null,
     }
 
-    setLogin = () => {
+    setLogin = (localLogin) => {
         const {setLogin} = this.props;
         const loginInput = document.querySelector('.login-newLogin');
-        const login = loginInput.value;
+        let login = loginInput.value;
+        if (login) {
+            localStorage.setItem('login', login)
+        }else
+        if (!this.state.login && localLogin) {
+            login = localLogin;
+        }
         this.setState({login})
         setLogin(login);
-        console.log('login -- ', login);
         
+        
+        console.log('login -- ', login);
+        console.log('local login -- ', localLogin);
+        
+    }
+
+    componentDidMount(){
+        const localLogin = localStorage.getItem('login');
+        console.log('localLogin -- ', localLogin);
+        if (!this.state.login && localLogin) {
+            this.setLogin(localLogin);
+        }
     }
 
     componentDidUpdate(){
