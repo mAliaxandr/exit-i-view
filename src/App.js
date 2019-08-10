@@ -13,7 +13,7 @@ class App extends React.Component {
   setLogin = (login) => {
     console.log('app setLogin -- ', login);
     
-    this.setState({login});
+    this.setState({login : login});
   }
 
   getName = (name) => {

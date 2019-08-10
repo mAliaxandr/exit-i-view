@@ -25,6 +25,10 @@ class AddMessage extends React.Component{
         if(!this.state.login && login) {
             this.setState({login});
         }
+
+        if(this.state.login && !login) {
+            this.setState({login:null});
+        }
         
         console.log(' addMessage did up date -- ', this.state, login);
     }

@@ -18,24 +18,24 @@ class LogIn extends React.Component {
         }
         this.setState({login})
         setLogin(login);
-        
-        
-        console.log('login -- ', login);
-        console.log('local login -- ', localLogin);
-        
+    }
+
+    removeLogin = () => {
+        localStorage.removeItem("login")
+        this.setState({login : null})
+        const {setLogin} = this.props;
+        setLogin('');
     }
 
     componentDidMount(){
         const localLogin = localStorage.getItem('login');
-        console.log('localLogin -- ', localLogin);
         if (!this.state.login && localLogin) {
             this.setLogin(localLogin);
         }
     }
 
     componentDidUpdate(){
-        console.log('login state --- ', this.state);
-        
+        console.log('login did upDate , state --- ', this.state);   
     }
 
     isLogin = () => {
@@ -54,7 +54,9 @@ class LogIn extends React.Component {
         return (
             <>
                 <span className='login-login'>{ login }</span>     
-                <button>Log Out</button>
+                <button
+                    onClick={this.removeLogin}
+                >Log Out</button>
             </>
         );
     }
