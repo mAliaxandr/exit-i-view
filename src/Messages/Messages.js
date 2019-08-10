@@ -7,18 +7,33 @@ class Messages extends React.Component {
         messages: [],
     }
 
-    componentDidMount(){
+    startWebSocet = () =>{
+        const { setOnline } = this.props;
         let newMessage = null;
         let messages = null;
         const ws = new WebSocket('ws://st-chat.shas.tel');
+        ws.onopen = () => {
+            this.setState({online: true})
+            setOnline(true);
+        }
+        ws.onclose = () =>{
+            console.log('eeeeeeeeeeeeeeeeerrrrrrrrrrrrr');
+            this.setState({online: false})
+            setOnline(false);
+            setTimeout(() => {this.startWebSocet()}, 5000);
+        }
         ws.onmessage = (e) => {
             const newMessageParse = JSON.parse(e.data);
             newMessage = newMessageParse.reverse();
             messages = this.state.messages.concat(newMessage);
-            console.log('eData = ', newMessage);
+            console.log('MsgS  eData = ', newMessage);
             this.setState({messages : messages})
-            console.log('state == ', this.state);
-        }    
+            console.log('MsgS  state == ', this.state);
+        }  
+    }
+
+    componentDidMount(){
+          this.startWebSocet()
     }
 
     scrollToBottom = () => {

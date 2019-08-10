@@ -8,6 +8,20 @@ import LogIn from './LogIn/LogIn';
 class App extends React.Component {
   state = {
     login: null,
+    online: false,
+  }
+
+  componentDidUpdate() {
+    console.log('APP upDate stage -- ', this.state);
+    if (this.state.online !== true) {
+      // this.setOnline();
+    }
+    // this.setState({online: "tru?"})
+  }
+  
+
+  setOnline = (online) => {
+    this.setState({online: online})
   }
 
   setLogin = (login) => {
@@ -31,6 +45,7 @@ class App extends React.Component {
         <div className="messages-wrapper">
           <Messages
             getName={this.getName}
+            setOnline={this.setOnline}
           />
         </div>
         <div className="addMessage">
