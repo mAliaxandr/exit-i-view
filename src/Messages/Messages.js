@@ -35,26 +35,51 @@ class Messages extends React.Component {
         getUserName(e.target.id)
     }
 
-    render() {
-        
-		let messages;
+    getRealDate = (time) => {
+        const date = DateTime.fromMillis(time);
+        let minute = null;
+        let second = null;
+        let month = null;
+        if (date.c.minute < 10 ) {
+            minute = '0'+date.c.minute;
+        } else {
+            minute = date.c.minute;
+        }
+        if ( date.c.second < 10){
+            second = '0'+date.c.second;
+        }else {
+            second = date.c.second;
+        } 
+        if ( date.c.month < 10){
+            month = '0'+ date.c.month;
+        }else {
+            month = date.c.month;
+        }
+        const userDate = date.c.hour+':'+minute+':'+second+" <"+date.c.day+' : '+month+' : '+date.c.year+' >';
+        return(
+            userDate
+        )  
+    }
 
+    render() {
+		let messages;
 		if(this.state.messages){
             messages = this.state.messages.map( (item, index) => {
-                const date = DateTime.fromMillis(item.time);
-                const userDate = date.c.hour+':'+date.c.minute+':'+date.c.second+" <"+date.c.day+' : '+date.c.month+' : '+date.c.year+' >';
-                
-                return(
-                    <li key={index}>
-                <div
-                    id={item.from}
-                    className='message-name'
-                    onClick={this.getName}
-                >{item.from}<span className='message-time'> {userDate}</span></div> 
-                <span className='message-message'>{item.message}</span>
-                <hr/>
-            </li>
-                )
+            const date = this.getRealDate(item.time);
+
+            return(
+                <li key={index}>
+                    <div
+                        id={item.from}
+                        className='message-name'
+                        onClick={this.getName}
+                    >{item.from}
+                        <span className='message-time'> {date} </span>
+                    </div> 
+                    <span className='message-message'>{item.message}</span>
+                    <hr/>
+                </li>
+            )
                 
 
             }
@@ -67,10 +92,7 @@ class Messages extends React.Component {
 					</li>
                     {messages}
                     <li>
-                        <div 
-                            // style={{ float:"left", clear: "both" }}
-                            ref={(el) => { this.messagesEnd = el; }}>
-                        </div>
+                        <div ref={(el) => { this.messagesEnd = el; }}></div>
                     </li>
 				</ul>)
 	}
