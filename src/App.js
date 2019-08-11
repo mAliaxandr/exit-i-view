@@ -38,10 +38,13 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        <h1>CHAT</h1>
-        <LogIn
-          setLogin={this.setLogin}
-        />
+        <div className='App-header'>
+          <h1>CHAT</h1>
+          <LogIn
+            setLogin={this.setLogin}
+          />
+        </div>
+        
         <div className="messages-wrapper">
           <Messages
             getName={this.getName}
@@ -51,6 +54,7 @@ class App extends React.Component {
         <div className="addMessage">
           <AddMessage
             login={this.state.login}
+            setOnline={this.setOnline}
           />
         </div>
       </div>

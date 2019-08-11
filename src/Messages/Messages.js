@@ -26,7 +26,7 @@ class Messages extends React.Component {
             const newMessageParse = JSON.parse(e.data);
             newMessage = newMessageParse.reverse();
             messages = this.state.messages.concat(newMessage);
-            console.log('MsgS  eData = ', newMessage);
+            // console.log('MsgS  eData = ', newMessage);
             this.setState({messages : messages})
             console.log('MsgS  state == ', this.state);
         }  
@@ -91,7 +91,7 @@ class Messages extends React.Component {
                         {item.from}
                     </div> 
                     <span className='message-time'> {date} </span>
-                    <span className='message-message'>{item.message}</span>
+                    <div className='message-message'>{item.message}</div>
                     <hr/>
                 </li>
             )
@@ -106,9 +106,9 @@ class Messages extends React.Component {
 						<h4 className="message-header">Messages</h4>
 					</li>
                     {messages}
-                    <li>
-                        <div ref={(el) => { this.messagesEnd = el; }}></div>
-                    </li>
+                    
+                        <div className='messages-list-bottom' ref={(el) => { this.messagesEnd = el; }}></div>
+                    
 				</ul>)
 	}
 }

@@ -5,14 +5,26 @@ li {
     overflow: hidden;
 }
 
+.messages-list {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.messages-list-bottom{
+    border: 1px solid red;
+}
+
 .message-header {
     text-align: center;
 }
 
 .message-name {
-    color: red;
+    color: orange;
     font-weight: 700;
     cursor: pointer;
+    overflow: hidden;
+    margin: 0 10px;
 }
 
 .message-time {
@@ -24,7 +36,11 @@ li {
 
 .message-message {
     color: white;
-    margin: 25px;
+    /* margin: 25px; */
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+    overflow: hidden;
     /* width: 90%; */
     /* overflow: hidden; */
 }

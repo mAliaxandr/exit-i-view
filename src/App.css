@@ -1,6 +1,5 @@
 body {
   background-color: gray;
-  /* width: 100vw; */
 }
 
 .App {
@@ -9,11 +8,19 @@ body {
  
 }
 
+.App-header {
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  background-color: gray;
+}
+
 .messages-wrapper {
   /* width: 90%; */
   height: 80vh;
   /* border: 1px solid greenyellow; */
-  margin: 0 auto;
+  margin-top:90px; 
+  /* margin: 0 auto; */
   overflow: auto;
   scroll-behavior: smooth ;
 }
@@ -23,9 +30,5 @@ body {
   height: 50px;
   /* border: 1px solid black; */
   margin: 0 auto;
-  margin-top: 20px;
- 
-  /* position: fixed; */
-  /* bottom: 20px; */
-  /* right: calc(100vw/2); */
+  /* margin-top: 20px; */
 }
