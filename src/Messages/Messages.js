@@ -101,8 +101,8 @@ class Messages extends React.Component {
             )
 		}
 
-        return (<ul className="list-group">
-					<li className="list-group-item">
+        return (<ul className="messages-list">
+					<li>
 						<h4 className="message-header">Messages</h4>
 					</li>
                     {messages}
