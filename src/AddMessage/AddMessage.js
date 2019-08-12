@@ -43,7 +43,7 @@ class AddMessage extends React.Component{
         const { setOnline } = this.props;
         let message = mes;
        
-        const ws = new WebSocket('ws://st-chat.shas.tel');
+        const ws = new WebSocket('wss://wssproxy.herokuapp.com/');
         ws.onopen = () => {
             if (this.state.messageBuffer) {
                 this.state.messageBuffer.forEach((item) => {

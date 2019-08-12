@@ -11,7 +11,7 @@ class Messages extends React.Component {
         const { setOnline } = this.props;
         let newMessage = null;
         let messages = null;
-        const ws = new WebSocket('ws://st-chat.shas.tel');
+        const ws = new WebSocket('wss://wssproxy.herokuapp.com/');
         ws.onopen = () => {
             this.setState({online: true})
             setOnline(true);
