@@ -1,4 +1,8 @@
 import React from 'react';
+import { InputGroup } from 'react-bootstrap';
+import { FormControl } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import './AddMessage.css';
 
 class AddMessage extends React.Component{
     state={
@@ -81,7 +85,6 @@ class AddMessage extends React.Component{
     }
 
     add = (e) => {
-        console.log('add', e.charCode);
         e.persist();
         if(e.charCode === 13){
             this.sendMessage()
@@ -90,19 +93,35 @@ class AddMessage extends React.Component{
 
     render() {
         return(
-            <div>
-                <input
-                    className="addMessage-inputMessage"
-                    type='text'
-                    autoFocus
-                    placeholder=' Enter your meesage'
-                    onChange={this.onChange}
-                    onKeyPress={this.add}
-                />
-                <button
+            <div className='addMessage-wrapper'>
+                <InputGroup className="mb-3">
+                    <FormControl
+                        className="addMessage-inputMessage"
+                        placeholder=' Enter your meesage'
+                        autoFocus
+                        onKeyPress={this.add}
+                        onChange={this.onChange}
+                    />  
+                <Button
+                    variant="warning"
                     onClick={this.sendMessage}
-                >SEND</button>
+                >SEND</Button>
+                </InputGroup>
             </div>
+            
+            // <div>
+            //     <input
+            //         className="addMessage-inputMessage"
+            //         type='text'
+            //         autoFocus
+            //         placeholder=' Enter your meesage'
+            //         onChange={this.onChange}
+            //         onKeyPress={this.add}
+            //     />
+            //     <button
+            //         onClick={this.sendMessage}
+            //     >SEND</button>
+            // </div>
         )
     }
 }

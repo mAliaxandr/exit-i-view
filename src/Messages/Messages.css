@@ -11,9 +11,9 @@ li {
     overflow: hidden;
 }
 
-.messages-list-bottom{
+/* .messages-list-bottom{
     border: 1px solid red;
-}
+} */
 
 .message-header {
     text-align: center;
@@ -45,8 +45,6 @@ li {
     background-color: rgba(0, 0, 0, 0.3);
     overflow: hidden;
     display: inline-block;
-    /* width: 90%; */
-    /* overflow: hidden; */
 }
 
 .message-allUserMessage {
