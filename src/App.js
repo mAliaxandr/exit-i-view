@@ -49,6 +49,7 @@ class App extends React.Component {
           <Messages
             getName={this.getName}
             setOnline={this.setOnline}
+            login={this.state.login}
           />
         </div>
         <div className="addMessage">

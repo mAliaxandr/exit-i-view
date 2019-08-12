@@ -28,7 +28,7 @@ class Messages extends React.Component {
             messages = this.state.messages.concat(newMessage);
             // console.log('MsgS  eData = ', newMessage);
             this.setState({messages : messages})
-            console.log('MsgS  state == ', this.state);
+            console.log('MsgS  state == ', this.state.messages[4]);
         }  
     }
 
@@ -76,13 +76,22 @@ class Messages extends React.Component {
     }
 
     render() {
-		let messages;
+        let messages;
+        const {login} = this.props;
 		if(this.state.messages){
             messages = this.state.messages.map( (item, index) => {
             const date = this.getRealDate(item.time);
+            let fromMess = 'message-allUserMessage';
+            if (login === item.from){
+                fromMess = 'message-myMessage';
+            }
 
             return(
-                <li key={index}>
+                <li
+                    key={index}
+                    className={fromMess}
+                >
+                    <div className='message-message'>{item.message}</div>
                     <div
                         id={item.from}
                         className='message-name'
@@ -91,8 +100,8 @@ class Messages extends React.Component {
                         {item.from}
                     </div> 
                     <span className='message-time'> {date} </span>
-                    <div className='message-message'>{item.message}</div>
-                    <hr/>
+                    
+                    {/* <hr/> */}
                 </li>
             )
                 
