@@ -15,17 +15,21 @@ class LogIn extends React.Component {
         const {setLogin} = this.props;
         const loginInput = document.querySelector('.login-newLogin');
         let login = loginInput.value;
-        if ( !login){
-            return
-        }
+        
         if (login) {
             localStorage.setItem('login', login)
         }else
         if (!this.state.login && localLogin) {
             login = localLogin;
         }
+        
+        if ( !loginInput.value){
+            return
+        }
+        
         this.setState({login})
         setLogin(login);
+        
     }
 
     add = (e) => {
@@ -44,8 +48,10 @@ class LogIn extends React.Component {
 
     componentDidMount(){
         const localLogin = localStorage.getItem('login');
+        const {setLogin} = this.props;
         if (!this.state.login && localLogin) {
-            this.setLogin(localLogin);
+            this.setState({login: localLogin})
+            setLogin(localLogin);
         }
     }
 
