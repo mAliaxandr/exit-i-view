@@ -5,6 +5,7 @@ import AddMessage from './AddMessage/AddMessage';
 import LogIn from './LogIn/LogIn';
 
 
+
 class App extends React.Component {
   state = {
     login: null,
@@ -25,7 +26,7 @@ class App extends React.Component {
   }
 
   setLogin = (login) => {
-    console.log('app setLogin -- ', login);
+    // console.log('app setLogin -- ', login);
     
     this.setState({login : login});
   }
@@ -52,6 +53,7 @@ class App extends React.Component {
             login={this.state.login}
           />
         </div>
+        
         <div className="addMessage">
           <AddMessage
             login={this.state.login}

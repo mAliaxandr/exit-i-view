@@ -2,6 +2,7 @@ import React from 'react';
 import './Messages.css';
 import { DateTime } from 'luxon';
 
+
 class Messages extends React.Component {
     state={
         messages: [],
@@ -24,16 +25,38 @@ class Messages extends React.Component {
         }
         ws.onmessage = (e) => {
             const newMessageParse = JSON.parse(e.data);
+            const lastMessage = newMessageParse[0];
             newMessage = newMessageParse.reverse();
             messages = this.state.messages.concat(newMessage);
-            // console.log('MsgS  eData = ', newMessage);
             this.setState({messages : messages})
-            console.log('MsgS  state == ', this.state.messages[4]);
+            console.log('MsgS  state == ', this.state);
+            if ( document.hidden){
+                this.notification(lastMessage);
+            }
+            
         }  
     }
 
+    notification = (mes) => {
+        if (!("Notification" in window)) {
+          alert("This browser does not support desktop notification");
+        }
+        else if (Notification.permission === "granted") {
+          let notification = new Notification(mes.from,{body:mes.message});
+          console.log('notification ', notification);
+        }
+        else if (Notification.permission !== 'denied') {
+          Notification.requestPermission((permission) => {
+            if (permission === "granted") {
+              let notification = new Notification("Уведомления разрешены");
+              console.log('notification ', notification);
+            }   
+          });
+        }
+      }
+
     componentDidMount(){
-          this.startWebSocet()
+        this.startWebSocet();
     }
 
     scrollToBottom = () => {
@@ -42,6 +65,7 @@ class Messages extends React.Component {
 
     componentDidUpdate(){
         this.scrollToBottom();
+        console.log('MsgS  upDate == ', this.state);    
     }
 
     getNameForMessage = (e) => {
@@ -100,13 +124,8 @@ class Messages extends React.Component {
                         {item.from}
                     </div> 
                     <span className='message-time'> {date} </span>
-                    
-                    {/* <hr/> */}
                 </li>
-            )
-                
-
-            }
+            )}
             )
 		}
 
@@ -115,9 +134,7 @@ class Messages extends React.Component {
 						<h4 className="message-header">Messages</h4>
 					</li>
                     {messages}
-                    
-                        <div className='messages-list-bottom' ref={(el) => { this.messagesEnd = el; }}></div>
-                    
+                    <div className='messages-list-bottom' ref={(el) => { this.messagesEnd = el; }}></div>
 				</ul>)
 	}
 }

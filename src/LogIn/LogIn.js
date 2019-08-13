@@ -29,7 +29,6 @@ class LogIn extends React.Component {
         
         this.setState({login})
         setLogin(login);
-        
     }
 
     add = (e) => {
@@ -55,10 +54,6 @@ class LogIn extends React.Component {
         }
     }
 
-    componentDidUpdate(){
-        console.log('login did upDate , state --- ', this.state);   
-    }
-
     isLogin = () => {
         const { login } = this.state;
         if (!login) {
@@ -69,8 +64,6 @@ class LogIn extends React.Component {
                         placeholder=" Enter Your login"
                         autoFocus
                         onKeyPress={this.add}
-                        // aria-label="Recipient's username"
-                        // aria-describedby="basic-addon2"
                     />
                   
                 <Button
@@ -78,21 +71,6 @@ class LogIn extends React.Component {
                     onClick={this.setLogin}
                 >Log In</Button>
                 </InputGroup>
-            
-                
-                // <>
-                //     <input 
-                //         className='login-newLogin' 
-                //         type='text' 
-                //         placeholder=' Enter Your login' 
-                //         autoFocus
-                //         onKeyPress={this.add}
-                //     ></input> 
-                //     <Button 
-                //         variant="warning"
-                //         onClick={this.setLogin}
-                //     >Log In</Button>
-                // </>
             )
         }
 

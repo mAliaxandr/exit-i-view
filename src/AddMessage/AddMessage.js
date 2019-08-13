@@ -32,7 +32,6 @@ class AddMessage extends React.Component{
         if (this.state.messageBuffer.length && this.state.online) {
             this.startWebSocet();
         } 
-        console.log(' addMessage did up date --##################### ', this.state);
     }
 
     startWebSocet = (mes) =>{
@@ -41,8 +40,6 @@ class AddMessage extends React.Component{
         const ws = new WebSocket('wss://wssproxy.herokuapp.com/');
         ws.onopen = () => {
             if (this.state.messageBuffer.length) {
-                console.log('dddddddddddddddddddd');
-                
                 this.state.messageBuffer.forEach((item) => {
                     ws.send(
                         JSON.stringify(item)
@@ -61,13 +58,11 @@ class AddMessage extends React.Component{
             if (message) {
                 this.state.messageBuffer.push(message);
             }
-            console.log('ADD messs  ON CLOSE');
             this.setState({online: false})
             setOnline(false);
             if (this.state.messageBuffer.length) {
                 setTimeout(() => {this.startWebSocet()}, 5000);
-            }
-               
+            }  
         }   
     }
     sendMessage = () => {
@@ -108,20 +103,6 @@ class AddMessage extends React.Component{
                 >SEND</Button>
                 </InputGroup>
             </div>
-            
-            // <div>
-            //     <input
-            //         className="addMessage-inputMessage"
-            //         type='text'
-            //         autoFocus
-            //         placeholder=' Enter your meesage'
-            //         onChange={this.onChange}
-            //         onKeyPress={this.add}
-            //     />
-            //     <button
-            //         onClick={this.sendMessage}
-            //     >SEND</button>
-            // </div>
         )
     }
 }
