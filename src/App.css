@@ -16,7 +16,7 @@ body {
 }
 
 .messages-wrapper {
-  height: 100vh;
+  height: 83vh;
   margin-top:90px; 
   overflow: auto;
   scroll-behavior: smooth ;
