@@ -12,13 +12,12 @@ class App extends React.Component {
     online: false,
   }
 
-  componentDidUpdate() {
-    console.log('APP upDate stage -- ', this.state);
-    if (this.state.online !== true) {
-      // this.setOnline();
-    }
-    // this.setState({online: "tru?"})
-  }
+  // componentDidUpdate() {
+  //   if (this.state.online !== true) {
+  //     // this.setOnline();
+  //   }
+  //   // this.setState({online: "tru?"})
+  // }
   
 
   setOnline = (online) => {
@@ -26,8 +25,6 @@ class App extends React.Component {
   }
 
   setLogin = (login) => {
-    // console.log('app setLogin -- ', login);
-    
     this.setState({login : login});
   }
 

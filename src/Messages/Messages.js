@@ -18,7 +18,6 @@ class Messages extends React.Component {
             setOnline(true);
         }
         ws.onclose = () =>{
-            console.log('eeeeeeeeeeeeeeeeerrrrrrrrrrrrr');
             this.setState({online: false})
             setOnline(false);
             setTimeout(() => {this.startWebSocet()}, 5000);
@@ -29,7 +28,6 @@ class Messages extends React.Component {
             newMessage = newMessageParse.reverse();
             messages = this.state.messages.concat(newMessage);
             this.setState({messages : messages})
-            console.log('MsgS  state == ', this.state);
             if ( document.hidden){
                 this.notification(lastMessage);
             }
@@ -64,8 +62,7 @@ class Messages extends React.Component {
     }
 
     componentDidUpdate(){
-        this.scrollToBottom();
-        console.log('MsgS  upDate == ', this.state);    
+        this.scrollToBottom(); 
     }
 
     getNameForMessage = (e) => {

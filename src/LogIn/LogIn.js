@@ -66,10 +66,10 @@ class LogIn extends React.Component {
                         onKeyPress={this.add}
                     />
                   
-                <Button
-                    variant="warning"
-                    onClick={this.setLogin}
-                >Log In</Button>
+                    <Button
+                        variant="warning"
+                        onClick={this.setLogin}
+                    >Log In</Button>
                 </InputGroup>
             )
         }
