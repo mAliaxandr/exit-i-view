@@ -97,10 +97,10 @@ class AddMessage extends React.Component{
                         onKeyPress={this.add}
                         onChange={this.onChange}
                     />  
-                <Button
-                    variant="warning"
-                    onClick={this.sendMessage}
-                >SEND</Button>
+                    <Button
+                        variant="warning"
+                        onClick={this.sendMessage}
+                    >SEND</Button>
                 </InputGroup>
             </div>
         )
